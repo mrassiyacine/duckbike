@@ -1,0 +1,16 @@
+operators:
+  - name: dott
+    parser: dott
+    cities:
+      - city: paris
+        base_url: https://gbfs.api.ridedott.com/public/v2/paris/
+        vehicle_status_endpoint: free_bike_status.json
+  #     - city: berlin
+  #       base_url: https://gbfs.api.ridedott.com/public/v2/berlin
+  #       vehicle_status_endpoint: free_bike_status.json
+  # - name: velib
+  #   parser: velib
+  #   cities:
+  #     - city: paris
+  #       base_url: https://velib-metropole-opendata.smovengo.cloud/opendata/Velib_Metropole
+  #       vehicle_status_endpoint: station_status.json
