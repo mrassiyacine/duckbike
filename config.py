@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 
 import yaml
@@ -27,10 +26,10 @@ class Settings(BaseSettings):
     MAX_RETRIES: int = 3
 
     # storage
-    R2_ACCOUNT_ID: str = os.getenv("R2_ACCOUNT_ID")
-    R2_ACCESS_KEY_ID: str = os.getenv("R2_ACCESS_KEY_ID")
-    R2_SECRET_ACCESS_KEY: str = os.getenv("R2_SECRET_ACCESS_KEY")
-    R2_BUCKET: str = os.getenv("R2_BUCKET", "gbfs-raw-data")
+    R2_ACCOUNT_ID: str
+    R2_ACCESS_KEY_ID: str
+    R2_SECRET_ACCESS_KEY: str
+    R2_BUCKET: str = "gbfs-raw-data"
 
     H3_RESOLUTION: int = 9
 

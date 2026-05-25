@@ -29,6 +29,6 @@ class R2Storage:
 
         self.client.put_object(
             Bucket=self.bucket,
-            key=key,
+            Key=key,
             Body=buffer.getvalue(),
         )
