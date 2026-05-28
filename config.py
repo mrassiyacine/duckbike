@@ -29,11 +29,12 @@ class Settings(BaseSettings):
     R2_ACCOUNT_ID: str
     R2_ACCESS_KEY_ID: str
     R2_SECRET_ACCESS_KEY: str
+    S3_ENDPOINT: str
     R2_BUCKET: str = "gbfs-raw-data"
 
     H3_RESOLUTION: int = 9
 
-    DB_PATH: str = "mobility.db"
+    DB_PATH: str = "dev.duckdb"
 
     OPERATORS_FILE: str = "operators.yaml"
 
