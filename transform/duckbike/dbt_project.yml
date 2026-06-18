@@ -24,7 +24,7 @@ vars:
   trip_expected_batt_drop_per_km: 1.0
   trip_time_penalty_per_min: 0.1    
   trip_distance_penalty_per_km: 0.5
-  trip_dummy_penalty: 15.0
+  trip_dummy_penalty: 40.0
   trip_top_k: 15  # keep only the K cheapest candidates per origin
 
 
