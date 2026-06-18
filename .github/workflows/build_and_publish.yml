@@ -2,7 +2,7 @@ name: Build and Publish Serving DB
 
 on:
   schedule:
-    - cron: "0 2 * * 1
+    - cron: "0 2 * * 1"
 
   workflow_dispatch:
 
