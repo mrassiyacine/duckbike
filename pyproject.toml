@@ -14,7 +14,15 @@ dev = [
     "sqlfluff-templater-dbt>=4.2.1",
 ]
 
+[tool.uv]
+default-groups = "all"
+
 [dependency-groups]
+dev = [
+    "black>=25.12.0",
+    "isort>=8.0.1",
+    "ruff>=0.15.17",
+]
 extraction = [
     "boto3>=1.43.16",
     "h3>=4.4.2",
@@ -24,4 +32,18 @@ extraction = [
     "pydantic-settings>=2.14.1",
     "pyyaml>=6.0.3",
     "tenacity>=9.1.4",
+]
+serving = [
+    "plotly>=6.7.0",
+    "streamlit>=1.58.0",
+]
+transform = [
+    "dbt-core>=1.9.0",
+    "dbt-duckdb>=1.9.0",
+    "duckdb>=1.5.3",
+    "h3>=4.4.2",
+    "networkx>=3.6.1",
+    "osmnx>=2.1.0",
+    "scikit-learn>=1.8.0",
+    "scipy>=1.17.1",
 ]

@@ -1,0 +1,38 @@
+name: 'duckbike'
+version: '1.0.0'
+
+profile: 'duckbike'
+
+model-paths: ["models"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+
+vars:
+  r2_bucket: gbfs-raw-data
+
+  trip_lookback_days: 7              # only match the most recent N days of sessions
+  trip_max_duration_hours: 1.5       
+  trip_max_distance_km: 15          
+  trip_max_speed_kmh: 30.0           
+  trip_battery_noise_tolerance: 5.0
+  trip_expected_batt_drop_per_km: 1.0
+  trip_time_penalty_per_min: 0.1    
+  trip_distance_penalty_per_km: 0.5
+  trip_dummy_penalty: 15.0
+  trip_top_k: 15  # keep only the K cheapest candidates per origin
+
+
+models:
+  duckbike:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: table
+    marts:
+      +materialized: table

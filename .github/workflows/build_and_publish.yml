@@ -1,0 +1,29 @@
+name: Build and Publish Serving DB
+
+on:
+  schedule:
+    - cron: "0 2 * * 1
+
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+    - name: Install transform deps
+      run: uv sync --group transform
+
+    - name: Run build and publish
+      env:
+        R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+        R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+        R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        S3_ENDPOINT: ${{ secrets.S3_ENDPOINT }}
+
+      run: uv run python -m transform.build_and_publish

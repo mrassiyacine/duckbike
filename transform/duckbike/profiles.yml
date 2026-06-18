@@ -1,0 +1,17 @@
+duckbike:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: '../../dev.duckdb'
+      extensions:
+        - httpfs
+        - spatial
+      secrets:
+        - type: s3
+          key_id: "{{ env_var('R2_ACCESS_KEY_ID') }}"
+          secret: "{{ env_var('R2_SECRET_ACCESS_KEY') }}"
+          endpoint: "{{ env_var('S3_ENDPOINT') }}"
+          region: auto
+          url_style: path
+          use_ssl: true

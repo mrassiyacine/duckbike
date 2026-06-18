@@ -31,10 +31,19 @@ class Settings(BaseSettings):
     R2_SECRET_ACCESS_KEY: str
     S3_ENDPOINT: str
     R2_BUCKET: str = "gbfs-raw-data"
+    R2_WAREHOUSE_BUCKET: str = (
+        "duckbike-warehouse"
+    )
 
     H3_RESOLUTION: int = 9
 
-    DB_PATH: str = "dev.duckdb"
+    DEV_DB_PATH: str = "dev.duckdb"
+    SERVING_DB_PATH: str = (
+        "serving.duckdb"
+    )
+    SERVING_DB_KEY: str = (
+        "serving.duckdb"
+    )
 
     OPERATORS_FILE: str = "operators.yaml"
 

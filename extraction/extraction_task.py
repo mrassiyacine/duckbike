@@ -1,12 +1,10 @@
-from datetime import datetime, timezone
-
 import boto3
 
 from config import CityEndpoint, OperatorConfig, settings
 from extraction.gbfs_client import GBFSClient
 from extraction.parser import parse_snapshot
 from extraction.writer import write_snapshot
-from utils.logger import get_logger
+from utils.logger import get_logger, setup_logging
 from utils.r2_storage import R2Storage
 
 logger = get_logger(__name__)
@@ -17,7 +15,6 @@ def run_extraction(op: OperatorConfig, city: CityEndpoint, storage: R2Storage) -
     Execute a single GBFS extraction pipeline:
     fetch -> parse -> persist to R2
     """
-    run_ts = datetime.now(timezone.utc)
     logger.info(f"extracting {op.name} / {city.city}")
     client = GBFSClient(city.base_url, timeout=settings.REQUEST_TIMEOUT_SEC)
     raw = client.fetch(city.vehicle_status_endpoint)
@@ -57,4 +54,5 @@ def main():
 
 
 if __name__ == "__main__":
+    setup_logging()
     main()
