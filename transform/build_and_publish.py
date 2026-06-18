@@ -32,6 +32,18 @@ def run_dbt_build() -> None:
     subprocess.run(
         [
             "dbt",
+            "deps",
+            "--project-dir",
+            DBT_PROJECT_DIR,
+            "--profiles-dir",
+            DBT_PROJECT_DIR,
+        ],
+        check=True,
+        env=env,
+    )
+    subprocess.run(
+        [
+            "dbt",
             "build",
             "--project-dir",
             DBT_PROJECT_DIR,
