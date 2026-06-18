@@ -3,6 +3,7 @@ Runs the full transform and publishes a slim, serving-ready DuckDB to R2
 """
 
 import os
+import subprocess
 from pathlib import Path
 
 import duckdb
@@ -22,22 +23,24 @@ def run_dbt_build() -> None:
     Build every dbt model into dev.duckdb
     """
     log.info("running dbt build")
-
     env = {
         **os.environ,
         "PYTHONPATH": os.pathsep.join(
             [str(REPO_ROOT), os.environ.get("PYTHONPATH", "")]
         ).rstrip(os.pathsep),
     }
-
-    os.environ.update(env)
-
-    exit_code = os.system(
-        f"dbt build --project-dir {DBT_PROJECT_DIR} --profiles-dir {DBT_PROJECT_DIR}"
+    subprocess.run(
+        [
+            "dbt",
+            "build",
+            "--project-dir",
+            DBT_PROJECT_DIR,
+            "--profiles-dir",
+            DBT_PROJECT_DIR,
+        ],
+        check=True,
+        env=env,
     )
-
-    if exit_code != 0:
-        raise RuntimeError("dbt build failed")
 
 
 def assemble_serving_db(
