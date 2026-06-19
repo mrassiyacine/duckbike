@@ -4,7 +4,13 @@ version = "0.1.0"
 description = ""
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "boto3>=1.43.33",
+    "duckdb>=1.5.4",
+    "plotly>=6.8.0",
+    "shapely>=2.1.2",
+    "streamlit>=1.58.0",
+]
 dev = [
     "black>=25.12.0",
     "ipykernel>=7.2.0",
@@ -14,8 +20,6 @@ dev = [
     "sqlfluff-templater-dbt>=4.2.1",
 ]
 
-[tool.uv]
-default-groups = "all"
 
 [dependency-groups]
 dev = [
