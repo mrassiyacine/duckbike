@@ -28,6 +28,7 @@ def run_dbt_build() -> None:
         "PYTHONPATH": os.pathsep.join(
             [str(REPO_ROOT), os.environ.get("PYTHONPATH", "")]
         ).rstrip(os.pathsep),
+        "DEV_DB_PATH": settings.DEV_DB_PATH,
     }
     subprocess.run(
         [

@@ -3,7 +3,9 @@ duckbike:
   outputs:
     dev:
       type: duckdb
-      path: '../../dev.duckdb'
+      # Single source of truth: build_and_publish exports DEV_DB_PATH (absolute).
+      # The fallback applies only when running dbt manually from this project dir.
+      path: "{{ env_var('DEV_DB_PATH', '../../dev.duckdb') }}"
       extensions:
         - httpfs
         - spatial

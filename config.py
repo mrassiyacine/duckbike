@@ -5,6 +5,9 @@ from pydantic import BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+_REPO_ROOT = Path(__file__).resolve().parent
+
+
 class CityEndpoint(BaseModel):
     city: str
     base_url: str
@@ -35,8 +38,8 @@ class Settings(BaseSettings):
 
     H3_RESOLUTION: int = 9
 
-    DEV_DB_PATH: str = "dev.duckdb"
-    SERVING_DB_PATH: str = "serving.duckdb"
+    DEV_DB_PATH: str = str(_REPO_ROOT / "dev.duckdb")
+    SERVING_DB_PATH: str = str(_REPO_ROOT / "serving.duckdb")
     SERVING_DB_KEY: str = "serving.duckdb"
 
     OPERATORS_FILE: str = "operators.yaml"
