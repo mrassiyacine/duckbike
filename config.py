@@ -4,7 +4,6 @@ import yaml
 from pydantic import BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-
 _REPO_ROOT = Path(__file__).resolve().parent
 
 

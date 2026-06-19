@@ -1,5 +1,6 @@
 import geopandas as gpd
 import h3
+import pandas as pd
 
 from config import settings
 from utils.logger import get_logger, setup_logging
@@ -32,8 +33,6 @@ def seed_filosofi(parquet_path: str, zones_csv: str, output_csv: str) -> None:
     df.to_csv(output_csv, index=False)
     logger.info(f"wrote seed to {output_csv}")
 
-
-import pandas as pd
 
 if __name__ == "__main__":
     setup_logging()

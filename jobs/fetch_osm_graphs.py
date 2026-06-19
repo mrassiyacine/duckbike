@@ -1,7 +1,8 @@
-"""Download the OSM walk + bike networks for the operator zone and store them in R2.
-
-On
 """
+Download the OSM walk + bike networks for the operator zone and store them in R2.
+"""
+
+import osmnx as ox
 
 from config import settings
 from utils.logger import get_logger, setup_logging
@@ -40,8 +41,6 @@ def fetch_osm_graphs(zones_csv: str = ZONES_CSV, buffer_m: int = BUFFER_M) -> No
         save_graph_to_r2(graph, storage, key)
         log.info("uploaded %s graph to r2://%s/%s", network_type, storage.bucket, key)
 
-
-import osmnx as ox
 
 if __name__ == "__main__":
     setup_logging()

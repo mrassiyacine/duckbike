@@ -1,7 +1,10 @@
 import io
 
+import boto3
 import pyarrow as pa
 import pyarrow.parquet as pq
+
+from config import settings
 
 
 def make_r2_client():
@@ -60,8 +63,3 @@ class R2Storage:
     def upload_file(self, path: str, key: str):
         """Upload a local file to R2 under ``key`` (multipart for large files)."""
         self.client.upload_file(path, self.bucket, key)
-
-
-import boto3
-
-from config import settings

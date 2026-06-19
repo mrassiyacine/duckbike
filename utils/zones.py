@@ -1,6 +1,7 @@
 import csv
 import json
 
+import geopandas as gpd
 from shapely.geometry import shape
 from shapely.geometry.base import BaseGeometry
 
@@ -32,6 +33,3 @@ def load_operator_zone_gdf(zones_csv: str):
         Single-row GeoDataFrame with the zone geometry (EPSG:4326).
     """
     return gpd.GeoDataFrame(geometry=[load_operator_zone(zones_csv)], crs="EPSG:4326")
-
-
-import geopandas as gpd

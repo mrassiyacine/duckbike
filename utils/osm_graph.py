@@ -9,6 +9,8 @@ import gzip
 import os
 import tempfile
 
+import osmnx as ox
+
 WALK_GRAPH_KEY = "reference/osm_walk.graphml.gz"
 BIKE_GRAPH_KEY = "reference/osm_bike.graphml.gz"
 
@@ -35,6 +37,3 @@ def load_graph_from_r2(storage, key: str):
         return ox.load_graphml(tmp_path)
     finally:
         os.unlink(tmp_path)
-
-
-import osmnx as ox

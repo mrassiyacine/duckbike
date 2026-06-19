@@ -1,6 +1,12 @@
 from collections import Counter
 
+import osmnx as ox
 import pandas as pd
+from shapely.geometry import LineString
+
+from config import settings
+from utils.osm_graph import BIKE_GRAPH_KEY, load_graph_from_r2
+from utils.r2_storage import R2Storage
 
 MIN_TRIP_KM = 0.1
 
@@ -82,11 +88,3 @@ def model(dbt, session):
         )
 
     return pd.DataFrame(rows, columns=OUTPUT_COLUMNS)
-
-
-import osmnx as ox
-from shapely.geometry import LineString
-
-from config import settings
-from utils.osm_graph import BIKE_GRAPH_KEY, load_graph_from_r2
-from utils.r2_storage import R2Storage
