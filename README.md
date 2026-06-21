@@ -16,6 +16,15 @@ DuckDB + dbt over Cloudflare R2, scheduled on GitHub Actions, served as a Stream
 ## The problem
 
 The public [GBFS](https://gbfs.org/) feed only tells you **where the available bikes are right now** — a stateless snapshot. No trips, no demand, no coverage. And Dott **rotates bike IDs between snapshots**, so you can't even follow one bike over time. DuckBike turns that stream of anonymous dots into the answers below.
+## Questions it answers
+
+| Tab | Question |
+|-----|----------|
+| **Fleet Quality** | How much of the "available" fleet is real vs *theatrical* — out of zone or too low on battery to ride? |
+| **Coverage Over Time** | What share of the (demand-weighted) population is within a short walk of a usable bike? |
+| **Coverage Gaps** | *Where* and *when* are the persistent gaps? |
+| **Origin & Destination** | Where do bikes accumulate and drain over the day? |
+| **Street Usage** | Which streets carry the most reconstructed trip load? |
 
 ## Architecture
 
@@ -29,15 +38,6 @@ Three services, glued by R2 object storage:
 | **Transform** | dbt + DuckDB read the raw lake (plus OpenStreetMap & INSEE Filosofi census) and build `staging → intermediate → marts`. |
 | **Serving** | A Streamlit dashboard queries a slim, marts-only DuckDB published back to R2. |
 
-## Questions it answers
-
-| Tab | Question |
-|-----|----------|
-| **Fleet Quality** | How much of the "available" fleet is real vs *theatrical* — out of zone or too low on battery to ride? |
-| **Coverage Over Time** | What share of the (demand-weighted) population is within a short walk of a usable bike? |
-| **Coverage Gaps** | *Where* and *when* are the persistent gaps? |
-| **Origin & Destination** | Where do bikes accumulate and drain over the day? |
-| **Street Usage** | Which streets carry the most reconstructed trip load? |
 
 ## Transformations
 
